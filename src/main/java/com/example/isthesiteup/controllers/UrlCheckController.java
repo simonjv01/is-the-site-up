@@ -24,13 +24,13 @@ public class UrlCheckController {
                 HttpURLConnection conn = (HttpURLConnection) urlObj.openConnection();
                 conn.setRequestMethod("GET");
                 conn.connect();
-                //int responseCodeCategory = conn.getResponseCode() / 100;
-                if  (conn.getResponseCode() >= 200  || conn.getResponseCode() < 400) {
-                    returnMessage = SITE_IS_UP;
+                int responseCodeCategory = conn.getResponseCode() / 100;
+                if  (responseCodeCategory != 2) {
+                    returnMessage = SITE_IS_DOWN;
 
                 }
                 else {
-                    returnMessage = SITE_IS_DOWN;
+                    returnMessage = SITE_IS_UP;
                 }
             } catch (MalformedURLException e) {
                 returnMessage = INCORRECT_URL;
